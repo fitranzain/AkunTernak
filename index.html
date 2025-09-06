@@ -9,108 +9,86 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
   <style>
+    :root {
+      --primary: #059669;     /* hijau emerald */
+      --accent: #F59E0B;      /* oranye lembut */
+      --background: #F3F4F6;  /* abu muda */
+      --text-main: #1F2937;   /* abu gelap */
+    }
     body {
       scroll-behavior: smooth;
-      background-color: #FAFAFA;
-      color: #212121;
+      background-color: var(--background);
+      color: var(--text-main);
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
+    /* Navbar */
     .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1020;
-      background-color: #4FC3F7 !important;
+      position: sticky; top: 0; z-index: 1020;
+      background-color: #ffffff !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
+    .navbar-brand img { height: 50px; }
     .navbar .nav-link {
-      color: #ffffff;
+      color: var(--text-main);
       font-weight: 500;
+      transition: color .3s;
     }
     .navbar .nav-link:hover {
-      color: #FFB74D !important;
+      color: var(--primary);
     }
-    section {
-      padding: 80px 0;
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(to bottom right, rgba(5,150,105,0.85), rgba(5,150,105,0.55)),
+                  url('images/hero-bg.jpg') center center/cover no-repeat;
+      text-align: center;
+      color: white;
     }
-    .btn-success {
-      background-color: #0288D1;
-      border-color: #0288D1;
-    }
-    .btn-success:hover {
-      background-color: #FFB74D;
-      border-color: #FFB74D;
-      color: #212121;
-    }
-    .btn-primary {
-      background-color: #FFB74D;
-      border-color: #FFB74D;
-      color: #212121;
-    }
-    .btn-primary:hover {
-      background-color: #0288D1;
-      border-color: #0288D1;
-      color: #ffffff;
-    }
-    .btn-outline-success {
-      color: #0288D1;
-      border-color: #0288D1;
-    }
-    .btn-outline-success:hover {
-      color: #212121;
-      background-color: #FFB74D;
-      border-color: #FFB74D;
-    }
+    .hero h1 { font-size: 3rem; font-weight: 700; }
+    .hero p { font-size: 1.25rem; opacity: .9; }
+    section { padding: 80px 0; }
+    /* Ikon */
     .icon-hover i {
-      transition: transform 0.3s, color 0.3s;
-      color: #0288D1;
+      transition: transform .3s, color .3s;
+      color: var(--primary);
     }
     .icon-hover:hover i {
       transform: scale(1.2);
-      color: #FFB74D;
+      color: var(--accent);
     }
-    .hero {
-      background:
-        linear-gradient(to bottom right, rgba(79,195,247,0.4), rgba(255,183,77,0.3)),
-        url('images/6341dbfd-e22d-4852-bd2c-75389ed804e6.png') center center/cover no-repeat;
-      position: relative;
+    /* Kartu */
+    .card {
+      border: none;
+      transition: transform .3s ease, box-shadow .3s ease;
+      background-color: #fff;
     }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(255,255,255,0.4);
-      z-index: 0;
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,.08);
     }
-    .hero .container {
-      position: relative;
-      z-index: 1;
+    /* Tombol */
+    .btn-primary {
+      background-color: var(--primary);
+      border: none;
     }
-    .hero h1 {
-      color: #0288D1;
-    }
-    .hero p {
-      color: #4FC3F7;
+    .btn-primary:hover {
+      background-color: var(--accent);
+      color: #fff;
     }
     footer {
-      background-color: #0288D1;
-      color: #ffffff;
-    }
-    .fade {
-      opacity: 0;
-      transition: opacity 0.6s ease-in-out;
-    }
-    .fade.show {
-      opacity: 1;
+      background-color: var(--primary);
+      color: #fff;
     }
   </style>
-<!-- AOS Animation -->
-<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="images/akunternak.png" alt="AkunTernak Logo" height="50">
+        <img src="images/akunternak.png" alt="AkunTernak Logo">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -127,61 +105,30 @@
   </nav>
 
   <!-- Hero -->
-  <section id="hero" class="hero text-center">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-6 text-md-start text-center mb-4 mb-md-0">
-          <h1 class="fw-bold">AkunTernak</h1>
-          <p>Pencatatan keuangan untuk peternakan ayam Anda — mudah, modern, dan efisien.</p>
-          <a href="javascript:void(0)" class="btn btn-success" onclick="toggleDescription()">Pelajari Layanan</a>
-        </div>
-        <div class="col-md-6 text-center">
-          <img src="images/icon-akunternak.png" alt="Ikon Ayam" class="img-fluid hero-icon" style="width:200px;">
-        </div>
-      </div>
+  <section id="hero" class="hero">
+    <div class="container" data-aos="fade-up">
+      <h1>AkunTernak</h1>
+      <p>Pencatatan keuangan untuk peternakan ayam Anda — mudah, modern, dan efisien.</p>
+      <a href="#layanan" class="btn btn-primary btn-lg mt-4 fw-bold">Pelajari Layanan</a>
     </div>
   </section>
-
-  <div id="hero-description" class="mt-4 fade text-center mx-auto" style="display:none; max-width: 700px;">
-    <p>
-      Selamat datang di <strong>AkunTernak</strong>!  
-      Kami hadir untuk membantu peternak ayam mencatat pemasukan, pengeluaran, produksi telur, hingga analisis usaha — 
-      semuanya dalam satu sistem yang mudah digunakan dan modern.
-    </p>
-    <p>
-      Dengan AkunTernak, Anda bisa lebih fokus mengembangkan usaha tanpa ribet urusan pembukuan.
-    </p>
-    <a href="#layanan" class="btn btn-primary mt-2">Lanjut ke Layanan</a>
-  </div>
-
-  <script>
-    function toggleDescription() {
-      const desc = document.getElementById("hero-description");
-      if (desc.style.display === "none" || desc.style.display === "") {
-        desc.style.display = "block";
-        setTimeout(() => desc.classList.add("show"), 10);
-      } else {
-        desc.classList.remove("show");
-        setTimeout(() => desc.style.display = "none", 600);
-      }
-    }
-  </script>
 
   <!-- Layanan -->
   <section id="layanan" class="bg-white">
     <div class="container">
+      <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Layanan Kami</h2>
       <div class="row text-center">
         <div class="col-md-4 mb-4 icon-hover" data-aos="zoom-in">
           <i class="fas fa-calculator fa-3x mb-3"></i>
           <h5 class="fw-bold">Catatan Keuangan</h5>
           <p>Kelola pengeluaran dan pemasukan usaha peternakan ayam Anda dengan mudah.</p>
         </div>
-        <div class="col-md-4 mb-4 icon-hover" data-aos="zoom-in" data-aos-delay="200">
+        <div class="col-md-4 mb-4 icon-hover" data-aos="zoom-in" data-aos-delay="150">
           <i class="fas fa-egg fa-3x mb-3"></i>
           <h5 class="fw-bold">Produksi Telur</h5>
           <p>Pantau hasil produksi telur dan performa ayam secara real time.</p>
         </div>
-        <div class="col-md-4 mb-4 icon-hover" data-aos="zoom-in" data-aos-delay="400">
+        <div class="col-md-4 mb-4 icon-hover" data-aos="zoom-in" data-aos-delay="300">
           <i class="fas fa-chart-line fa-3x mb-3"></i>
           <h5 class="fw-bold">Analisis Usaha</h5>
           <p>Dapatkan insight profit dan tren biaya untuk strategi usaha yang lebih baik.</p>
@@ -191,87 +138,65 @@
   </section>
 
   <!-- Artikel -->
-<section id="artikel" class="py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center mb-5">Tulisan Terbaru</h2>
-    <div class="row g-4">
-      
-      <!-- Artikel 1 -->
-      <div class="col-md-4" data-aos="fade-up">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Pengenalan AkunTernak</h5>
-            <p class="card-text">
-              Selamat datang di <strong>AkunTernak</strong>!  
-              Kami hadir untuk membantu peternak ayam mencatat pemasukan, pengeluaran, produksi telur, hingga analisis usaha.
-            </p>
-            <a href="posts/Materi 1.md" target="_blank" class="btn btn-primary mt-auto">
-              Baca Selengkapnya
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Artikel 2 -->
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Judul Artikel Kedua</h5>
-            <p class="card-text">Ringkasan singkat artikel...</p>
-            <a href="posts/slug-artikel-lain.md" target="_blank" class="btn btn-primary mt-auto">
-              Baca Selengkapnya
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-  <!-- Kontak -->
-  <section id="kontak" class="bg-light">
+  <section id="artikel" class="py-5" style="background-color: var(--background);">
     <div class="container">
-      <h2 class="text-center mb-4" data-aos="fade-up">Kontak</h2>
-      <div class="text-center mb-3" data-aos="fade-up" data-aos-delay="200">
-        <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-success"><i class="fab fa-whatsapp"></i> Hubungi via WhatsApp</a>
+      <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Tulisan Terbaru</h2>
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up">
+          <div class="card h-100 shadow-sm">
+            <img src="images/sample1.jpg" class="card-img-top" alt="Artikel 1">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Panduan Meningkatkan Produksi Telur</h5>
+              <p class="card-text">Tips dan strategi untuk memaksimalkan produksi telur ayam peternakan Anda.</p>
+              <a href="#" class="btn btn-primary mt-auto">Baca Selengkapnya</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
+          <div class="card h-100 shadow-sm">
+            <img src="images/sample2.jpg" class="card-img-top" alt="Artikel 2">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Mengatur Keuangan Peternakan</h5>
+              <p class="card-text">Cara mengatur arus kas agar usaha peternakan tetap sehat dan berkembang.</p>
+              <a href="#" class="btn btn-primary mt-auto">Baca Selengkapnya</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="card h-100 shadow-sm">
+            <img src="images/sample3.jpg" class="card-img-top" alt="Artikel 3">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Analisis Profitabilitas Ayam Petelur</h5>
+              <p class="card-text">Menilai profitabilitas usaha ayam petelur dan strategi untuk meningkatkannya.</p>
+              <a href="#" class="btn btn-primary mt-auto">Baca Selengkapnya</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <form class="row g-3" data-aos="fade-up" data-aos-delay="400">
-        <div class="col-md-6">
-          <input type="text" class="form-control" placeholder="Nama">
-        </div>
-        <div class="col-md-6">
-          <input type="email" class="form-control" placeholder="Email">
-        </div>
-        <div class="col-12">
-          <textarea class="form-control" rows="5" placeholder="Pesan"></textarea>
-        </div>
-        <div class="col-12 text-center">
-          <button type="submit" class="btn btn-primary">Kirim Pesan</button>
-        </div>
-      </form>
     </div>
   </section>
 
-  <footer class="text-center py-3">
-    <p class="mb-0">&copy; 2025 AkunTernak | Design by masfitran</p>
+  <!-- Kontak -->
+  <section id="kontak" class="bg-white">
+    <div class="container">
+      <h2 class="text-center mb-4 fw-bold" data-aos="fade-up">Kontak Kami</h2>
+      <div class="text-center" data-aos="fade-up" data-aos-delay="150">
+        <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-success">
+          <i class="fab fa-whatsapp"></i> Hubungi via WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-4">
+    <p class="mb-0">&copy; 2025 AkunTernak | Design Premium</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
+    AOS.init({ duration: 1000, once: true });
   </script>
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init({
-    duration: 800,  // durasi animasi
-    once: true      // animasi hanya sekali saat scroll
-  });
-</script>
 </body>
 </html>
