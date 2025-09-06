@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Tulisan</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 2rem auto; line-height: 1.6; }
+    h1, h2, h3 { color: #2d6a4f; }
+    a { color: #1d3557; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div id="content">Loading...</div>
+
+  <script>
+    // Ambil nama file dari URL (contoh: ?file=tulisan-1.md)
+    const urlParams = new URLSearchParams(window.location.search);
+    const file = urlParams.get("file") || "contoh.md";
+
+    fetch(`/posts/${file}`)
+      .then(res => res.text())
+      .then(md => {
+        document.getElementById("content").innerHTML = marked.parse(md);
+      })
+      .catch(err => {
+        document.getElementById("content").innerHTML = "<p>Artikel tidak ditemukan.</p>";
+      });
+  </script>
+</body>
+</html>
