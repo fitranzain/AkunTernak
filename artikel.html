@@ -48,7 +48,7 @@ if (file) {
     })
     .then(md => {
       console.log("DEBUG: markdown content =", md);
-      document.getElementById("artikelContent").innerHTML = marked.parse(md);
+      document.getElementById("artikelContent").innerText = md;
     })
     .catch(err => {
       console.error(err);
