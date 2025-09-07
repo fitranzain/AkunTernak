@@ -1,1 +1,0 @@
-Saya ingin coba posting materi 2 nih, sudah bisa belum ya?
