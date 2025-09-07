@@ -34,26 +34,29 @@
     </div>
   </div>
 
-  <script>
-    // Ambil parameter nama file dari URL (contoh: artikel.html?file=materi-1.md)
-    const params = new URLSearchParams(window.location.search);
-    const file = params.get("file");
+<script>
+const params = new URLSearchParams(window.location.search);
+const file = params.get("file");
+console.log("DEBUG: file param =", file);
 
-    if (file) {
-      fetch(`posts/${file}`)
-        .then(res => {
-          if (!res.ok) throw new Error("Gagal memuat artikel");
-          return res.text();
-        })
-        .then(md => {
-          document.getElementById("artikelContent").innerHTML = marked.parse(md);
-        })
-        .catch(err => {
-          document.getElementById("artikelContent").innerHTML = `<p style="color:red;">${err}</p>`;
-        });
-    } else {
-      document.getElementById("artikelContent").innerHTML = "<p style='color:red;'>Tidak ada artikel yang dipilih.</p>";
-    }
-  </script>
+if (file) {
+  fetch(`posts/${file}`)
+    .then(res => {
+      console.log("DEBUG: fetch status =", res.status);
+      if (!res.ok) throw new Error("Gagal memuat artikel");
+      return res.text();
+    })
+    .then(md => {
+      console.log("DEBUG: markdown content =", md);
+      document.getElementById("artikelContent").innerHTML = marked.parse(md);
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById("artikelContent").innerHTML = `<p style="color:red;">${err}</p>`;
+    });
+} else {
+  document.getElementById("artikelContent").innerHTML = "<p style='color:red;'>Tidak ada artikel yang dipilih.</p>";
+}
+</script>
 </body>
 </html>
