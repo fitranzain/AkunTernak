@@ -3,12 +3,14 @@
     "file": "Prolog.md",
     "title": "Prolog AkunTernak",
     "image": "gambar1.jpg",
-    "excerpt": "Pembuka tentang tujuan AkunTernak..."
+    "excerpt": "Pembuka tentang tujuan AkunTernak...",
+    "date": "2025-09-01"
   },
   {
     "file": "Coba Materi 2.md",
     "title": "Coba Materi 2",
-    "image": "gambar1,jpg",
-    "excerpt": "Materi awal tentang pencatatan ternak..."
+    "image": "gambar1.jpg",
+    "excerpt": "Materi awal tentang pencatatan ternak...",
+    "date": "2025-09-05"
   }
 ]

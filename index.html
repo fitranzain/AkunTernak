@@ -151,13 +151,15 @@
   fetch('posts.json')
     .then(res => res.json())
     .then(posts => {
+      // Urutkan dari yang paling baru (tanggal paling besar ke kecil)
+      posts.sort((a, b) => new Date(b.date) - new Date(a.date));
       const container = document.getElementById('artikelList');
       posts.forEach((post, index) => {
         const col = document.createElement('div');
         col.className = 'col-md-4';
         col.setAttribute('data-aos', 'fade-up');
         if (index > 0) {
-          col.setAttribute('data-aos-delay', index * 150); // efek delay animasi kalau mau
+          col.setAttribute('data-aos-delay', index * 150);
         }
         col.innerHTML = `
           <div class="card h-100 shadow-sm">
