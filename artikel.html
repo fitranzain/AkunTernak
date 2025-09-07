@@ -32,7 +32,9 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card shadow-sm">
+          <img id="artikelImage" src="" alt="" class="card-img-top" style="display: none;">
           <div class="card-body">
+            <h3 id="artikelTitle" class="fw-bold mb-3"></h3>
             <div id="artikelContent" class="markdown-body"></div>
           </div>
         </div>
@@ -48,7 +50,9 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const file = params.get("file");
+
     if (file) {
+      // Ambil isi artikel markdown
       fetch(`posts/${file}`)
         .then(res => {
           if (!res.ok) throw new Error("Gagal memuat artikel");
@@ -61,6 +65,29 @@
           document.getElementById("artikelContent").innerHTML =
             `<p class="text-danger">${err}</p>`;
         });
+
+      // Ambil data artikel dari posts.json (title & image)
+      fetch('posts.json')
+        .then(res => res.json())
+        .then(posts => {
+          const artikel = posts.find(p => p.file === file);
+          if (artikel) {
+            // Update title
+            if (artikel.title) {
+              document.getElementById("artikelTitle").textContent = artikel.title;
+              document.title = `AkunTernak – ${artikel.title}`;
+            }
+            // Update image
+            if (artikel.image) {
+              const imgEl = document.getElementById("artikelImage");
+              imgEl.src = `images/${artikel.image}`;
+              imgEl.alt = artikel.title || "Gambar Artikel";
+              imgEl.style.display = "block";
+            }
+          }
+        })
+        .catch(err => console.error("Gagal memuat data artikel:", err));
+
     } else {
       document.getElementById("artikelContent").innerHTML =
         "<p class='text-danger'>Tidak ada artikel yang dipilih.</p>";
