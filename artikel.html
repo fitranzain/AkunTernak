@@ -40,7 +40,7 @@
     const file = params.get("file");
 
     if (file) {
-      fetch(`post/${file}`)
+      fetch(`posts/${file}`)
         .then(res => {
           if (!res.ok) throw new Error("Gagal memuat artikel");
           return res.text();
