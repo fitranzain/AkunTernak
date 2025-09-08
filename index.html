@@ -182,55 +182,45 @@
     });
 </script>
 
-<!-- Section Media -->
+<!-- Section Media (YouTube) -->
 <section id="media" class="py-5">
   <div class="container">
     <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Media Sosial</h2>
-    <div class="row g-4">
-
-      <!-- YouTube -->
-      <div class="col-md-4" data-aos="fade-up">
+    <div class="row justify-content-center">
+      <div class="col-md-6" data-aos="fade-up">
         <div class="card h-100 shadow-sm">
-          <img src="https://img.youtube.com/vi/VIDEO_ID/hqdefault.jpg" 
-               class="card-img-top" alt="YouTube Thumbnail">
+          <img id="youtube-thumb" src="images/placeholder.jpg" class="card-img-top" alt="YouTube Thumbnail">
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">YouTube</h5>
-            <p class="card-text">Video terbaru di channel saya.</p>
-            <a href="https://www.youtube.com/watch?v=VIDEO_ID" target="_blank" 
-               class="btn btn-primary mt-auto">Tonton</a>
+            <p class="card-text">Video terbaru dari channel saya.</p>
+            <a id="youtube-link" href="#" target="_blank" class="btn btn-primary mt-auto">Tonton</a>
           </div>
         </div>
       </div>
-
-      <!-- TikTok -->
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
-        <div class="card h-100 shadow-sm">
-          <img src="images/tiktok-thumb.jpg" class="card-img-top" alt="TikTok Thumbnail">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">TikTok</h5>
-            <p class="card-text">Konten singkat seputar peternakan.</p>
-            <a href="https://www.tiktok.com/@USERNAME/video/VIDEO_ID" target="_blank" 
-               class="btn btn-primary mt-auto">Lihat</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Instagram -->
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-        <div class="card h-100 shadow-sm">
-          <img src="images/ig-thumb.jpg" class="card-img-top" alt="Instagram Thumbnail">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Instagram</h5>
-            <p class="card-text">Foto terbaru dari kegiatan saya.</p>
-            <a href="https://www.instagram.com/p/POST_ID/" target="_blank" 
-               class="btn btn-primary mt-auto">Lihat</a>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
+
+<script>
+// Ganti dengan API_KEY dan CHANNEL_ID YouTube-mu
+const API_KEY = "AIzaSyBnKDZs3alh3xKXCQ9WwGhFyDpPzT2JXLQ";  
+const CHANNEL_ID = "UCbxdEvrQQDlhBZR7BglBWAQ";
+
+fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&order=date&part=snippet&type=video&maxResults=1`)
+  .then(res => res.json())
+  .then(data => {
+    if (data.items && data.items.length > 0) {
+      const video = data.items[0];
+      const videoId = video.id.videoId;
+      const thumb = video.snippet.thumbnails.high.url;
+
+      document.getElementById("youtube-thumb").src = thumb;
+      document.getElementById("youtube-link").href = `https://www.youtube.com/watch?v=${videoId}`;
+    }
+  })
+  .catch(err => console.error("Gagal ambil video YouTube:", err));
+</script>
+
 
 <!-- Section Kontak -->
 <section id="kontak" class="py-5 bg-light">
