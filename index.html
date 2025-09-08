@@ -183,43 +183,47 @@
 </script>
 
 <!-- Section Media (YouTube) -->
-<section id="media" class="py-5">
+<section id="media" class="py-5 bg-white">
   <div class="container">
-    <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Media Sosial</h2>
-    <div class="row justify-content-center">
-      <div class="col-md-6" data-aos="fade-up">
-        <div class="card h-100 shadow-sm">
-          <img id="youtube-thumb" src="images/placeholder.jpg" class="card-img-top" alt="YouTube Thumbnail">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">YouTube</h5>
-            <p class="card-text">Video terbaru dari channel saya.</p>
-            <a id="youtube-link" href="#" target="_blank" class="btn btn-primary mt-auto">Tonton</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Video Terbaru</h2>
+    <div id="youtubeVideo" class="row justify-content-center"></div>
   </div>
 </section>
 
 <script>
-// Ganti dengan API_KEY dan CHANNEL_ID YouTube-mu
-const API_KEY = "AIzaSyBnKDZs3alh3xKXCQ9WwGhFyDpPzT2JXLQ";  
-const CHANNEL_ID = "UCbxdEvrQQDlhBZR7BglBWAQ";
+  const API_KEY = "AIzaSyBnKDZs3alh3xKXCQ9WwGhFyDpPzT2JXLQ";
+  const CHANNEL_ID = "UCbxdEvrQQDlhBZR7BglBWAQ";
 
-fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&order=date&part=snippet&type=video&maxResults=1`)
-  .then(res => res.json())
-  .then(data => {
-    if (data.items && data.items.length > 0) {
+  fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&order=date&part=snippet&type=video&maxResults=3`)
+    .then(res => res.json())
+    .then(data => {
       const video = data.items[0];
       const videoId = video.id.videoId;
-      const thumb = video.snippet.thumbnails.high.url;
+      const title = video.snippet.title;
+      const thumbnail = video.snippet.thumbnails.high.url;
+      const container = document.getElementById("youtubeVideo");
 
-      document.getElementById("youtube-thumb").src = thumb;
-      document.getElementById("youtube-link").href = `https://www.youtube.com/watch?v=${videoId}`;
-    }
-  })
-  .catch(err => console.error("Gagal ambil video YouTube:", err));
+      container.innerHTML = `
+        <div class="col-md-6 text-center" data-aos="zoom-in">
+          <div class="card shadow-sm">
+            <img src="${thumbnail}" class="card-img-top" alt="${title}">
+            <div class="card-body">
+              <h5 class="card-title">${title}</h5>
+              <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" class="btn btn-primary">
+                <i class="fab fa-youtube"></i> Tonton di YouTube
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById("youtubeVideo").innerHTML =
+        '<p class="text-danger text-center">Gagal memuat video.</p>';
+    });
 </script>
+
 
 
 <!-- Section Kontak -->
