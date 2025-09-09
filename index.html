@@ -38,9 +38,12 @@
     }
     /* Hero */
 .hero {
-  padding: 100px 0; /* bukan 100vh lagi */
-  background: linear-gradient(to right, rgba(5,150,105,0.05), rgba(5,150,105,0.1));
+  padding: 120px 0;
+  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+              url('images/herosection4.png') no-repeat center center;
+  background-size: cover;
 }
+
 
 .hero h1 {
   font-size: 2.5rem;
@@ -122,13 +125,19 @@
 <section id="hero" class="hero">
   <div class="container">
     <div class="row align-items-center">
-      <!-- Kolom Teks -->
-      <div class="col-md-6 text-center text-md-start" data-aos="fade-right">
+      <div class="col-md-8 text-center text-md-start mx-auto" data-aos="fade-right">
         <h1 class="fw-bold mb-3">AkunTernak</h1>
         <p class="lead mb-4">Berbagi kegiatan dunia peternakan dari sudut pandang keuangan.</p>
-        <a href="https://fitranzain.github.io/AkunTernak/artikel.html?file=Prolog.md" class="btn btn-primary btn-lg fw-bold">
-  Kenalan yuk!
-</a>
+        <a href="https://fitranzain.github.io/AkunTernak/artikel.html?file=Prolog.md" class="btn btn-primary btn-lg fw-bold mb-4">
+          Kenalan yuk!
+        </a>
+        <!-- Baris tambahan -->
+        <p class="fw-semibold">Mari belajar bersama tentang peternakan dan akuntansi!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
       </div>
       <!-- Kolom Gambar -->
       <div class="col-md-6 text-center" data-aos="fade-left">
