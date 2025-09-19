@@ -5,15 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AkunTernak</title>
   <link rel="icon" href="images/icon-akunternak.png" type="image/png">
+
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <!-- AOS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
   <style>
     :root {
-      --primary: #059669;     /* hijau emerald */
-      --accent: #F59E0B;      /* oranye lembut */
-      --background: #F3F4F6;  /* abu muda */
-      --text-main: #1F2937;   /* abu gelap */
+      --primary: #059669; /* hijau emerald */
+      --accent: #F59E0B; /* oranye lembut */
+      --background: #F3F4F6; /* abu muda */
+      --text-main: #1F2937; /* abu gelap */
     }
     body {
       scroll-behavior: smooth;
@@ -23,7 +28,9 @@
     }
     /* Navbar */
     .navbar {
-      position: sticky; top: 0; z-index: 1020;
+      position: sticky;
+      top: 0;
+      z-index: 1020;
       background-color: #ffffff !important;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
@@ -33,38 +40,31 @@
       font-weight: 500;
       transition: color .3s;
     }
-    .navbar .nav-link:hover {
+    .navbar .nav-link:hover { color: var(--primary); }
+
+    /* Hero */
+    .hero {
+      padding: 120px 0;
+      background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+        url('images/herosection4.png') no-repeat center center;
+      background-size: cover;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
       color: var(--primary);
     }
-    /* Hero */
-.hero {
-  padding: 120px 0;
-  background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
-              url('images/herosection4.png') no-repeat center center;
-  background-size: cover;
-}
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-main);
+      max-width: 500px;
+    }
+    .hero img {
+      max-width: 85%;
+      transition: transform .3s ease;
+    }
+    .hero img:hover { transform: scale(1.05); }
 
-
-.hero h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--primary);
-}
-
-.hero p {
-  font-size: 1.15rem;
-  color: var(--text-main);
-  max-width: 500px;
-}
-
-.hero img {
-  max-width: 85%;
-  transition: transform .3s ease;
-}
-
-.hero img:hover {
-  transform: scale(1.05);
-}
     /* Ikon */
     .icon-hover i {
       transition: transform .3s, color .3s;
@@ -74,6 +74,7 @@
       transform: scale(1.2);
       color: var(--accent);
     }
+
     /* Kartu */
     .card {
       border: none;
@@ -84,6 +85,7 @@
       transform: translateY(-5px);
       box-shadow: 0 10px 20px rgba(0,0,0,.08);
     }
+
     /* Tombol */
     .btn-primary {
       background-color: var(--primary);
@@ -93,6 +95,7 @@
       background-color: var(--accent);
       color: #fff;
     }
+
     footer {
       background-color: var(--primary);
       color: #fff;
@@ -116,215 +119,206 @@
           <li class="nav-item"><a class="nav-link" href="#layanan">Layanan</a></li>
           <li class="nav-item"><a class="nav-link" href="#artikel">Artikel</a></li>
           <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
-        <li class="nav-item ms-3">
-          <a href="https://www.facebook.com/akunternak" target="_blank" class="nav-link p-0 fs-5">
-            <i class="fa-brands fa-facebook" style="color:#1877F2;"></i>
-          </a>
-        </li>
-        <li class="nav-item ms-2">
-          <a href="https://www.instagram.com/akunternak" target="_blank" class="nav-link p-0 fs-5">
-            <i class="fa-brands fa-instagram" style="color:#E4405F;"></i>
-          </a>
-        </li>
-        <li class="nav-item ms-2">
-          <a href="https://www.tiktok.com/@akunternak" target="_blank" class="nav-link p-0 fs-5">
-            <i class="fa-brands fa-tiktok" style="color:#000;"></i>
-          </a>
-        </li>
+          <li class="nav-item ms-3">
+            <a href="https://www.facebook.com/akunternak" target="_blank" class="nav-link p-0 fs-5">
+              <i class="fa-brands fa-facebook" style="color:#1877F2;"></i>
+            </a>
+          </li>
+          <li class="nav-item ms-2">
+            <a href="https://www.instagram.com/akunternak" target="_blank" class="nav-link p-0 fs-5">
+              <i class="fa-brands fa-instagram" style="color:#E4405F;"></i>
+            </a>
+          </li>
+          <li class="nav-item ms-2">
+            <a href="https://www.tiktok.com/@akunternak" target="_blank" class="nav-link p-0 fs-5">
+              <i class="fa-brands fa-tiktok" style="color:#000;"></i>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-<!-- Hero -->
-<section id="hero" class="hero">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-8 text-center text-md-start mx-auto" data-aos="fade-right">
-        <h1 class="fw-bold mb-3">AkunTernak</h1>
-        <p class="lead mb-4">Berbagi kegiatan dunia peternakan dari sudut pandang keuangan.</p>
-        <a href="https://fitranzain.github.io/AkunTernak/artikel.html?file=Prolog.md" class="btn btn-primary btn-lg fw-bold mb-4">
-          Kenalan yuk!
-        </a>
+  <!-- Hero -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-8 text-center text-md-start mx-auto" data-aos="fade-right">
+          <h1 class="fw-bold mb-3">AkunTernak</h1>
+          <p class="lead mb-4">Berbagi kegiatan dunia peternakan dari sudut pandang keuangan.</p>
+          <a href="https://fitranzain.github.io/AkunTernak/artikel.html?file=Prolog.md" class="btn btn-primary btn-lg fw-bold mb-4">
+            Kenalan yuk!
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Artikel -->
-<section id="artikel" class="py-5" style="background-color: var(--background);">
-  <div class="container">
-    <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Tulisan Terbaru</h2>
-    <div class="row g-4" id="artikelList">
-      <!-- Card artikel akan dimuat otomatis lewat JavaScript -->
+  <!-- Artikel -->
+  <section id="artikel" class="py-5" style="background-color: var(--background);">
+    <div class="container">
+      <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Tulisan Terbaru</h2>
+      <div class="row g-4" id="artikelList">
+        <!-- Card artikel akan dimuat otomatis lewat JavaScript -->
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<script>
-  fetch('posts.json')
-    .then(res => res.json())
-    .then(posts => {
-      // Urutkan dari yang paling baru (tanggal paling besar ke kecil)
-      posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-      const container = document.getElementById('artikelList');
-      posts.forEach((post, index) => {
-        const col = document.createElement('div');
-        col.className = 'col-md-4';
-        col.setAttribute('data-aos', 'fade-up');
-        if (index > 0) {
-          col.setAttribute('data-aos-delay', index * 150);
-        }
-        col.innerHTML = `
-          <div class="card h-100 shadow-sm">
-            <img src="images/${post.image}" class="card-img-top" alt="${post.title}">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">${post.title}</h5>
-              <p class="card-text">${post.excerpt}</p>
-              <a href="artikel.html?file=${encodeURIComponent(post.file)}" class="btn btn-primary mt-auto">Baca Selengkapnya</a>
+  <script>
+    fetch('posts.json')
+      .then(res => res.json())
+      .then(posts => {
+        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        const container = document.getElementById('artikelList');
+        posts.forEach((post, index) => {
+          const col = document.createElement('div');
+          col.className = 'col-md-4';
+          col.setAttribute('data-aos', 'fade-up');
+          if (index > 0) col.setAttribute('data-aos-delay', index * 150);
+          col.innerHTML = `
+            <div class="card h-100 shadow-sm">
+              <img src="images/${post.image}" class="card-img-top" alt="${post.title}">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">${post.title}</h5>
+                <p class="card-text">${post.excerpt}</p>
+                <a href="artikel.html?file=${encodeURIComponent(post.file)}" class="btn btn-primary mt-auto">Baca Selengkapnya</a>
+              </div>
+            </div>
+          `;
+          container.appendChild(col);
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById('artikelList').innerHTML =
+          '<p class="text-danger text-center">Gagal memuat daftar artikel.</p>';
+      });
+  </script>
+
+  <!-- Section Media (YouTube) -->
+  <section id="media" class="py-5 bg-white">
+    <div class="container">
+      <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Video Terbaru</h2>
+      <div id="youtubeVideo" class="row justify-content-center"></div>
+    </div>
+  </section>
+
+  <script>
+    const API_KEY = "AIzaSyBnKDZs3alh3xKXCQ9WwGhFyDpPzT2JXLQ";
+    const CHANNEL_ID = "UCbxdEvrQQDlhBZR7BglBWAQ";
+    fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&order=date&part=snippet&type=video&maxResults=3`)
+      .then(res => res.json())
+      .then(data => {
+        const video = data.items[0];
+        const videoId = video.id.videoId;
+        const title = video.snippet.title;
+        const thumbnail = video.snippet.thumbnails.high.url;
+        const container = document.getElementById("youtubeVideo");
+        container.innerHTML = `
+          <div class="col-md-6 text-center" data-aos="zoom-in">
+            <div class="card shadow-sm">
+              <img src="${thumbnail}" class="card-img-top" alt="${title}">
+              <div class="card-body">
+                <h5 class="card-title">${title}</h5>
+                <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" class="btn btn-primary">
+                  <i class="fab fa-youtube"></i> Tonton di YouTube
+                </a>
+              </div>
             </div>
           </div>
         `;
-        container.appendChild(col);
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById("youtubeVideo").innerHTML =
+          '<p class="text-danger text-center">Gagal memuat video.</p>';
       });
-    })
-    .catch(err => {
-      console.error(err);
-      document.getElementById('artikelList').innerHTML =
-        '<p class="text-danger text-center">Gagal memuat daftar artikel.</p>';
-    });
-</script>
+  </script>
 
-<!-- Section Media (YouTube) -->
-<section id="media" class="py-5 bg-white">
-  <div class="container">
-    <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Video Terbaru</h2>
-    <div id="youtubeVideo" class="row justify-content-center"></div>
-  </div>
-</section>
+  <!-- Section Kontak -->
+  <section id="kontak" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Kontak Saya</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <!-- Alert sukses & error -->
+          <div id="alert-success" class="alert alert-success d-none" role="alert">
+            ✅ Pesan berhasil dikirim!
+          </div>
+          <div id="alert-error" class="alert alert-danger d-none" role="alert">
+            ❌ Terjadi kesalahan. Coba lagi nanti.
+          </div>
 
-<script>
-  const API_KEY = "AIzaSyBnKDZs3alh3xKXCQ9WwGhFyDpPzT2JXLQ";
-  const CHANNEL_ID = "UCbxdEvrQQDlhBZR7BglBWAQ";
-
-  fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&order=date&part=snippet&type=video&maxResults=3`)
-    .then(res => res.json())
-    .then(data => {
-      const video = data.items[0];
-      const videoId = video.id.videoId;
-      const title = video.snippet.title;
-      const thumbnail = video.snippet.thumbnails.high.url;
-      const container = document.getElementById("youtubeVideo");
-
-      container.innerHTML = `
-        <div class="col-md-6 text-center" data-aos="zoom-in">
-          <div class="card shadow-sm">
-            <img src="${thumbnail}" class="card-img-top" alt="${title}">
-            <div class="card-body">
-              <h5 class="card-title">${title}</h5>
-              <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" class="btn btn-primary">
-                <i class="fab fa-youtube"></i> Tonton di YouTube
-              </a>
+          <form id="contact-form" action="https://formspree.io/f/mandajzl" method="POST">
+            <div class="mb-3">
+              <label for="nama" class="form-label">Nama</label>
+              <input type="text" class="form-control" id="nama" name="nama" required>
             </div>
-          </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="_replyto" required>
+            </div>
+            <div class="mb-3">
+              <label for="pesan" class="form-label">Pesan</label>
+              <textarea class="form-control" id="pesan" name="pesan" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Kirim</button>
+          </form>
         </div>
-      `;
-    })
-    .catch(err => {
-      console.error(err);
-      document.getElementById("youtubeVideo").innerHTML =
-        '<p class="text-danger text-center">Gagal memuat video.</p>';
-    });
-</script>
-
-
-
-<!-- Section Kontak -->
-<section id="kontak" class="py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center mb-4">Kontak Saya</h2>
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-
-        <!-- Alert sukses & error -->
-        <div id="alert-success" class="alert alert-success d-none" role="alert">
-          ✅ Pesan berhasil dikirim!
-        </div>
-        <div id="alert-error" class="alert alert-danger d-none" role="alert">
-          ❌ Terjadi kesalahan. Coba lagi nanti.
-        </div>
-
-        <form id="contact-form" action="https://formspree.io/f/mandajzl" method="POST">
-          <div class="mb-3">
-            <label for="nama" class="form-label">Nama</label>
-            <input type="text" class="form-control" id="nama" name="nama" required>
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="_replyto" required>
-          </div>
-          <div class="mb-3">
-            <label for="pesan" class="form-label">Pesan</label>
-            <textarea class="form-control" id="pesan" name="pesan" rows="5" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Kirim</button>
-        </form>
-
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Script untuk handle submit -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("contact-form");
-  const successAlert = document.getElementById("alert-success");
-  const errorAlert = document.getElementById("alert-error");
+  <!-- Script untuk handle submit -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("contact-form");
+      const successAlert = document.getElementById("alert-success");
+      const errorAlert = document.getElementById("alert-error");
 
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-    const formData = new FormData(form);
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const formData = new FormData(form);
 
-    try {
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: { "Accept": "application/json" }
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { "Accept": "application/json" }
+          });
+
+          if (response.ok) {
+            successAlert.classList.remove("d-none");
+            errorAlert.classList.add("d-none");
+            form.reset();
+          } else {
+            throw new Error("Network response was not ok");
+          }
+        } catch (error) {
+          successAlert.classList.add("d-none");
+          errorAlert.classList.remove("d-none");
+        }
       });
-
-      if (response.ok) {
-        successAlert.classList.remove("d-none");
-        errorAlert.classList.add("d-none");
-        form.reset();
-      } else {
-        throw new Error("Network response was not ok");
-      }
-    } catch (error) {
-      successAlert.classList.add("d-none");
-      errorAlert.classList.remove("d-none");
-    }
-  });
-});
-</script>
+    });
+  </script>
 
   <!-- Footer -->
-<!-- Footer -->
-<footer class="text-center py-4">
-  <p class="mb-2">&copy; 2025 AkunTernak | Design by masfitran</p>
-  <div class="d-flex justify-content-center gap-3">
-    <a href="https://www.facebook.com/akunternak" target="_blank" class="fs-4 icon-hover">
-      <i class="fa-brands fa-facebook" style="color:#1877F2;"></i>
-    </a>
-    <a href="https://www.instagram.com/akunternak" target="_blank" class="fs-4 icon-hover">
-      <i class="fa-brands fa-instagram" style="color:#E4405F;"></i>
-    </a>
-    <a href="https://www.tiktok.com/@akunternak" target="_blank" class="fs-4 icon-hover">
-      <i class="fa-brands fa-tiktok" style="color:#000;"></i>
-    </a>
-  </div>
-</footer>
+  <footer class="text-center py-4">
+    <p class="mb-2">&copy; 2025 AkunTernak | Design by masfitran</p>
+    <div class="d-flex justify-content-center gap-3">
+      <a href="https://www.facebook.com/akunternak" target="_blank" class="fs-4 icon-hover">
+        <i class="fa-brands fa-facebook" style="color:#1877F2;"></i>
+      </a>
+      <a href="https://www.instagram.com/akunternak" target="_blank" class="fs-4 icon-hover">
+        <i class="fa-brands fa-instagram" style="color:#E4405F;"></i>
+      </a>
+      <a href="https://www.tiktok.com/@akunternak" target="_blank" class="fs-4 icon-hover">
+        <i class="fa-brands fa-tiktok" style="color:#000;"></i>
+      </a>
+    </div>
+  </footer>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
