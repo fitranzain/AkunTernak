@@ -195,45 +195,81 @@
       });
   </script>
 
-  <!-- Section Media (YouTube) -->
-  <section id="media" class="py-5 bg-white">
-    <div class="container">
-      <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Video Terbaru</h2>
-      <div id="youtubeVideo" class="row justify-content-center"></div>
-    </div>
-  </section>
+<!-- Section Media (YouTube) -->
+<section id="media" class="py-5 bg-white">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Video Terbaru / Terpopuler</h2>
+    <div id="youtubeVideo" class="row justify-content-center"></div>
+  </div>
+</section>
 
-  <script>
-    const API_KEY = "AIzaSyBnKDZs3alh3xKXCQ9WwGhFyDpPzT2JXLQ";
-    const CHANNEL_ID = "UCbxdEvrQQDlhBZR7BglBWAQ";
-    fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&order=date&part=snippet&type=video&maxResults=3`)
-      .then(res => res.json())
-      .then(data => {
-        const video = data.items[0];
-        const videoId = video.id.videoId;
-        const title = video.snippet.title;
-        const thumbnail = video.snippet.thumbnails.high.url;
-        const container = document.getElementById("youtubeVideo");
-        container.innerHTML = `
-          <div class="col-md-6 text-center" data-aos="zoom-in">
-            <div class="card shadow-sm">
-              <img src="${thumbnail}" class="card-img-top" alt="${title}">
-              <div class="card-body">
-                <h5 class="card-title">${title}</h5>
-                <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" class="btn btn-primary">
-                  <i class="fab fa-youtube"></i> Tonton di YouTube
-                </a>
-              </div>
+<script>
+  const API_KEY = "AIzaSyBnKDZs3alh3xKXCQ9WwGhFyDpPzT2JXLQ";
+  const CHANNEL_ID = "UCbxdEvrQQDlhBZR7BglBWAQ";
+
+  // Fungsi render video
+  function renderVideos(videos, limit = 3) {
+    const container = document.getElementById("youtubeVideo");
+    container.innerHTML = videos.slice(0, limit).map(video => {
+      const videoId = video.id.videoId || video.id; // search API pakai id.videoId, videos API pakai id langsung
+      const title = video.snippet.title;
+      const thumbnail = video.snippet.thumbnails.high.url;
+      return `
+        <div class="col-md-4 mb-4" data-aos="zoom-in">
+          <div class="card shadow-sm h-100">
+            <img src="${thumbnail}" class="card-img-top" alt="${title}">
+            <div class="card-body d-flex flex-column">
+              <h6 class="card-title">${title}</h6>
+              <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" class="btn btn-primary mt-auto">
+                <i class="fab fa-youtube"></i> Tonton di YouTube
+              </a>
             </div>
           </div>
-        `;
-      })
-      .catch(err => {
-        console.error(err);
-        document.getElementById("youtubeVideo").innerHTML =
-          '<p class="text-danger text-center">Gagal memuat video.</p>';
-      });
-  </script>
+        </div>
+      `;
+    }).join("");
+  }
+
+  // Ambil video terbaru
+  fetch(`https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&order=date&part=snippet&type=video&maxResults=10`)
+    .then(res => res.json())
+    .then(data => {
+      const searchResults = data.items;
+
+      if (!searchResults || searchResults.length === 0) {
+        throw new Error("Tidak ada video ditemukan");
+      }
+
+      const videoIds = searchResults.map(item => item.id.videoId).join(",");
+
+      // Coba ambil statistik view
+      return fetch(`https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${videoIds}&part=snippet,statistics`)
+        .then(res => res.json())
+        .then(statsData => {
+          if (!statsData.items || statsData.items.length === 0) {
+            // fallback: render terbaru
+            renderVideos(searchResults, 3);
+            return;
+          }
+
+          // Urutkan berdasarkan view count
+          const sortedVideos = statsData.items.sort((a, b) => {
+            return (b.statistics.viewCount || 0) - (a.statistics.viewCount || 0);
+          });
+
+          renderVideos(sortedVideos, 3);
+        })
+        .catch(err => {
+          console.warn("Fallback ke video terbaru:", err);
+          renderVideos(searchResults, 3);
+        });
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById("youtubeVideo").innerHTML =
+        '<p class="text-danger text-center">Gagal memuat video.</p>';
+    });
+</script>
 
   <!-- Section Kontak -->
   <section id="kontak" class="py-5 bg-light">
